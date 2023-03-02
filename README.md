@@ -18,12 +18,15 @@ march madness 2023 bracket model
 - Section 5 - Supplements
     - coaches, conferences, team_conference, conf_tourney_games, secondary_tourney_teams, results, spellings, tourney slots, tourney_seed_round_slots
 
+# Approach
+Going with Team A and Team B approach and Win variable as the final one. Data given as WTeam and LTeam
+
 # Evaluation
 - Using Brier Score and not log-loss this time
 
 # To-Do
 - [x] look at the data lol (eda, how to arrange, etc...)
-- [ ] need
+- [ ] 
 - [ ] to
 - [ ] write in front of it
 
