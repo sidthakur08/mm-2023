@@ -23,9 +23,9 @@ march madness 2023 bracket model
 
 # To-Do
 - [x] look at the data lol (eda, how to arrange, etc...)
-- [ ] 
-- [ ] 
+- [ ] need
+- [ ] to
+- [ ] write in front of it
 
-
-- [] submit predictions in the [warmup competition](https://www.kaggle.com/competitions/warmup-round-march-machine-learning-mania-2023)
-- [] submit predictions in the [main competition](https://www.kaggle.com/competitions/march-machine-learning-mania-2023/)
+- [ ] submit predictions in the [warmup competition](https://www.kaggle.com/competitions/warmup-round-march-machine-learning-mania-2023)
+- [ ] submit predictions in the [main competition](https://www.kaggle.com/competitions/march-machine-learning-mania-2023/)
