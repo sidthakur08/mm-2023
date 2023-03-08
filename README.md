@@ -2,7 +2,7 @@
 march madness 2023 bracket model
 
 # Data
-- Data has Men's and Women's, ~~do we think combining the data can skew the model?~~
+- Data has Men's and Women's stats
 - Section 1 - The Basics
     - team ids and names (MTeams and WTeams)
     - tournament seeds (MNCAATourneySeeds and WNCAATourneySeeds)
@@ -27,6 +27,7 @@ Going with Team A and Team B approach and Win variable as the final one. Data gi
 # To-Do
 - [x] conversion of data from W/L to Team A/B to keep Win as the feature variable
 - [x] get yearly average stats for regular season(still in need for an efficient workaround maybe)
+- [ ] combine final data for modeling (still can add features)
 - [ ] get last avg yearly stat for a team for NCAA tourney
 - [ ] add plus_minus or maybe Win% as features?
 - [ ] modeling?
