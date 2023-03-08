@@ -26,7 +26,9 @@ Going with Team A and Team B approach and Win variable as the final one. Data gi
 
 # To-Do
 - [x] conversion of data from W/L to Team A/B to keep Win as the feature variable
-- [ ] get yearly average stats for every gameweek (might be little complex, need to look for an efficient workaround)
+- [x] get yearly average stats for regular season(still in need for an efficient workaround maybe)
+- [ ] get last avg yearly stat for a team for NCAA tourney
+- [ ] add plus_minus or maybe Win% as features?
 - [ ] modeling?
 - [ ] submit predictions in the [warmup competition](https://www.kaggle.com/competitions/warmup-round-march-machine-learning-mania-2023)
 - [ ] submit predictions in the [main competition](https://www.kaggle.com/competitions/march-machine-learning-mania-2023/)
