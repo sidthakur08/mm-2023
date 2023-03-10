@@ -27,9 +27,10 @@ Going with Team A and Team B approach and Win variable as the final one. Data gi
 # To-Do
 - [x] conversion of data from W/L to Team A/B to keep Win as the feature variable
 - [x] get yearly average stats for regular season(still in need for an efficient workaround maybe)
+- [x] get the scored and allowed stats -_-
 - [ ] combine final data for modeling (still can add features)
 - [ ] get last avg yearly stat for a team for NCAA tourney
-- [ ] add plus_minus, rebound_differential, assist_to_turnover_ratio
+- [x] add plus_minus, rebound_differential, assist_to_turnover_ratio
 - [ ] look at kenpom ratings
 - [ ] modeling?
 - [ ] submit predictions in the [warmup competition](https://www.kaggle.com/competitions/warmup-round-march-machine-learning-mania-2023)
