@@ -32,8 +32,8 @@ Going with Team A and Team B approach and Win variable as the final one. Data gi
 - [x] (steal+block)/personal_foul to get an idea about how their defense is
 - [x] Get rid of the 3Pt stuff from FG to get 2Pt
 - [x] margin between A_offense - B_defense & B_offense - A_defense
-- [ ] adding seeding variable?
-- [ ] look at kenpom ratings
+- [ ] ~~adding seeding variable?~~
+- [ ] ~~look at kenpom ratings~~
 - [ ] get last avg yearly stat for a team for NCAA tourney
 - [x] combine final data for modeling (still can add features)
 - [ ] modeling?
