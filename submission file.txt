@@ -1,0 +1,77 @@
+def create_tournamentData_submission(submission_file,filename, year, model):
+
+    print("Getting teams.")
+    Tourneyseeds = pd.read_csv('Data/{}.csv'.format(filename))
+    tourney_teams = []
+    submission_data = []
+    for index, row in Tourneyseeds.iterrows():
+        if row['Season'] == 2023:
+            tourney_teams.append(row['TeamID'])
+    sample_submission = pd.read_csv('Data/{}.csv'.format(submission_file))
+    
+    tourney_teams.sort()
+    for index, row in sample_submission.iterrows():
+        #temp_df['Season'] = [row.Season]
+        #print(row.WTeamID)
+        #year = int(row['ID'].split('_')[0])
+        team_1 = int(row['ID'].split('_')[1])
+        team_2 = int(row['ID'].split('_')[2])
+#         print(team_1)
+#         print(team_2)
+#         print(tourney_teams)
+        if team_1 < team_2:
+            #print((team_1 in tourney_teams) & (team_2 in tourney_teams))
+            if (team_1 in tourney_teams) & (team_2 in tourney_teams):
+                temp_df = pd.DataFrame()
+                #print(team_1, team_2)
+                temp_df['A_Team'] = [team_1]
+                temp_df['B_Team'] = [team_2]
+
+                temp_df['A_Seed'] = getTourneySeed(temp_df['A_Team'].values.tolist()[0], year)
+                temp_df['B_Seed'] = getTourneySeed(temp_df['B_Team'].values.tolist()[0], year)
+                
+
+                df_A = get_team_stats(temp_df['A_Team'].values.tolist()[0], year , reg_season_detailed_pd, string='A_')
+                df_B = get_team_stats(temp_df['B_Team'].values.tolist()[0], year , reg_season_detailed_pd, string='B_')
+
+                temp_df = pd.concat([temp_df,df_A],axis=1)
+                temp_df = pd.concat([temp_df,df_B],axis=1)
+
+                temp_df['A_PtsDiff'] = temp_df['A_Pts'] - temp_df['B_Pts_Allw']
+                temp_df['A_FG2PDiff'] = temp_df['A_FG2_Perc'] - temp_df['B_FG2_Perc_Allw']
+                temp_df['A_FG3PDiff'] = temp_df['A_FG3_Perc'] - temp_df['B_FG3_Perc_Allw']
+                temp_df['A_FTPDiff'] = temp_df['A_FTPerc'] - temp_df['B_FTPerc']
+                temp_df['A_AtoTDiff'] = temp_df['A_AtoT'] - temp_df['B_AtoT_Allw']
+                temp_df['A_StBltoPFDiff'] = temp_df['A_StlBlktoPF'] - temp_df['B_StlBlktoPF_Allw']
+                temp_df['A_RPDiff'] = temp_df['A_RPerc'] - temp_df['B_RPerc_Allw']
+                #tourn_data_comp['A_DRPDiff'] = tourn_data_comp['A_DRPerc'] - tourn_data_comp['B_DRPerc_Allw']
+
+                temp_df['B_PtsDiff'] = temp_df['B_Pts'] - temp_df['A_Pts_Allw']
+                temp_df['B_FG2PDiff'] = temp_df['B_FG2_Perc'] - temp_df['A_FG2_Perc_Allw']
+                temp_df['B_FG3PDiff'] = temp_df['B_FG3_Perc'] - temp_df['A_FG3_Perc_Allw']
+                #tourn_data_comp['B_FTPDiff'] = tourn_data_comp['B_FTPerc'] - tourn_data_comp['A_FTPerc_Allw']
+                temp_df['B_AtoTDiff'] = temp_df['B_AtoT'] - temp_df['A_AtoT_Allw']
+                temp_df['B_StBltoPFDiff'] = temp_df['B_StlBlktoPF'] - temp_df['A_StlBlktoPF_Allw']
+                temp_df['B_RPDiff'] = temp_df['B_RPerc'] - temp_df['A_RPerc_Allw']
+                #tourn_data_comp['B_DRPDiff'] = tourn_data_comp['B_DRPerc'] - tourn_data_comp['A_DRPerc_Allw']
+
+                temp_df.drop(['A_Pts','B_Pts_Allw','A_FG2_Perc','B_FG2_Perc_Allw','A_FG3_Perc','B_FG3_Perc_Allw',
+                                      'A_FTPerc','A_AtoT','B_AtoT_Allw',
+                                     'A_StlBlktoPF','B_StlBlktoPF_Allw','A_RPerc','B_RPerc_Allw',
+                                     'B_Pts','A_Pts_Allw','B_FG2_Perc','A_FG2_Perc_Allw','B_FG3_Perc','A_FG3_Perc_Allw',
+                                      'B_FTPerc','B_AtoT','A_AtoT_Allw',
+                                     'B_StlBlktoPF','A_StlBlktoPF_Allw','B_RPerc','A_RPerc_Allw'],axis=1, inplace=True)
+                #print(temp_df.columns)
+                prediction = model.predict_proba(temp_df.loc[:, ~temp_df.columns.isin(['A_Team','B_Team'])]) 
+                print(team_1, team_2)
+                print(prediction)
+                label = str(year) + '_' + str(team_1) + '_' + \
+                str(team_2)
+                submission_data.append([label, prediction[:,1][0]])
+            else:
+                label = str(year) + '_' + str(team_1) + '_' + \
+                str(team_2)
+                submission_data.append([label, 0.5])
+                
+
+    return submission_data
